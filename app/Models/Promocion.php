@@ -10,13 +10,14 @@ class Promocion extends Model
     use HasFactory;
     protected $table = 'promocion';
     protected $primaryKey = 'id_promocion';
-    public function rubro()
+    public $timestamps = false;
+    public function rubros()
     {
-        return $this->belongsTo(Rubro::class, 'id_rubro');
+        return $this->hasMany(Rubro::class, 'id_promocion');
     }
-    public function producto()
+    public function productos()
     {
-        return $this->belongsTo(Producto::class, 'cod_producto');
+        return $this->hasMany(Productos::class, 'id_promocion');
     }
     public function tipo_promocion()
     {

@@ -10,6 +10,7 @@ class TipoPromocion extends Model
     use HasFactory;
     protected $table = 'tipo_promocion';
     protected $primaryKey = 'id_tipo_promocion';
+    public $timestamps = false;
 
     public function promociones()
     {

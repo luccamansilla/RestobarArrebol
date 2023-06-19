@@ -9,9 +9,10 @@ class Productos extends Model
 {
     use HasFactory;
     protected $table = 'productos';
+    public $timestamps = false;
     public function promocion()
     {
-        return $this->hasOne(Promocion::class, 'cod_producto');
+        return $this->belongsTo(Promocion::class, 'id_promocion');
     }
     public function rubro()
     {
