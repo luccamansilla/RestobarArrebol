@@ -2,18 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TipoPromocion;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
-class TipoPromocionController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('auth.login');
+    }
+    public function register()
+    {
+        return view('auth.register');
     }
 
     /**
@@ -35,7 +39,7 @@ class TipoPromocionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(TipoPromocion $tipoPromocion)
+    public function show(User $user)
     {
         //
     }
@@ -43,7 +47,7 @@ class TipoPromocionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(TipoPromocion $tipoPromocion)
+    public function edit(User $user)
     {
         //
     }
@@ -51,7 +55,7 @@ class TipoPromocionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, TipoPromocion $tipoPromocion)
+    public function update(Request $request, User $user)
     {
         //
     }
@@ -59,7 +63,7 @@ class TipoPromocionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(TipoPromocion $tipoPromocion)
+    public function destroy(User $user)
     {
         //
     }

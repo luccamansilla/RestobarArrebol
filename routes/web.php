@@ -3,6 +3,8 @@
 use App\Http\Controllers\ReservaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReserveController;
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,7 +18,11 @@ use App\Http\Controllers\ReserveController;
 
 Route::get('/', function () {
     //return redirect()->view('reservas.inicio');
-    return view('auth.login');
+    return view('inicio');
+});
+Route::controller(UserController::class)->group(function () {
+    Route::get('/iniciarSesion', 'index')->name('users.index');
+    Route::get('/Registrarse', 'register')->name('users.registro');
 });
 
 Route::controller(ReservaController::class)->group(function () {
