@@ -13,7 +13,7 @@ class ReservaController extends Controller
      */
     public function index()
     {
-        return '<h1 class="font-sans hover:font-serif">pantalla de inicio</h1>';
+        return view('reservas.indexReservas');
     }
 
     /**

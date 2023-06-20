@@ -18,15 +18,24 @@ use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     //return redirect()->view('reservas.inicio');
-    return view('inicio');
+    return view('dashboard');
 });
 Route::controller(UserController::class)->group(function () {
     Route::get('/iniciarSesion', 'index')->name('users.index');
     Route::get('/Registrarse', 'register')->name('users.registro');
 });
 
-Route::controller(ReservaController::class)->group(function () {
-    Route::get('reservas', 'index')->name('reservas.inicio');
+// Route::controller(ReservaController::class)->group(function () {
+//     Route::get('reservas', 'index')->name('reservas.inicio');
+// });
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/reservas', function () {
+        return view('reservas.indexReservas');
+    })->name('reservas.inicio');
 });
 
 Route::middleware([
