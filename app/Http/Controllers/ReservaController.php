@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mesa;
 use App\Models\Reserva;
+use App\Models\Zona;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 
 class ReservaController extends Controller
 {
@@ -13,7 +16,8 @@ class ReservaController extends Controller
      */
     public function index()
     {
-        return view('reservas.indexReservas');
+        $zonas = Zona::all();
+        return view('reservas.indexReservas', compact('zonas'));
     }
 
     /**
