@@ -9,11 +9,23 @@ class Reserva extends Model
 {
     use HasFactory;
     protected $table = 'reserva';
+    protected $fillable = [
+        'nro_reserva',
+        'id_usuario',
+        'cantidad_personas',
+        'id_zona',
+        'id_hora',
+        'fecha'
+    ];
     // protected $primaryKey = 'nro_reserva';
-    public function mesa()
+    public function zona()
     {
         //Uno a muchos inversa
-        return $this->belongsTo(Mesa::class, 'nro_mesa');
+        return $this->belongsTo(Zona::class, 'id_zona');
+    }
+    public function horario()
+    {
+        return $this->belongsTo(Horarios::class, 'id_hora');
     }
     public function user()
     {

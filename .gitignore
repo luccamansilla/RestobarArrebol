@@ -17,3 +17,10 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+composer.json
+composer.lock
+package-lock.json
+package.json
+public/vendor/livewire/livewire.js
+public/vendor/livewire/livewire.js.map
+public/vendor/livewire/manifest.json

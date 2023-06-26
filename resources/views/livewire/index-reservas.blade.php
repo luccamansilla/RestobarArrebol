@@ -1,18 +1,19 @@
-@livewire('index-reservas')
-{{-- <x-app-layout>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<div>
+    {{-- To attain knowledge, add things every day; To attain wisdom, subtract things every day. --}}
+    <x-app-layout>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         <div>
             {{-- Close your eyes. Count to one. That is how long forever feels. --}}
-{{-- <div class="w-11/12 mx-auto place-items-center max-h-full">
+            <div class="w-11/12 mx-auto place-items-center max-h-full">
                 {{-- max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 h-96 --}}
-{{-- <div class="px-6 py-4 flex item-center">
+                <div class="px-6 py-4 flex item-center">
                     <a href="{{ route('reservas.realizar') }}">
                         <x-button openBtn="Realizar Reserva" />
                     </a>
-                </div> --}}
-{{-- Message --}}
-{{-- @if (Session::has('success'))
+                </div>
+                {{-- Message --}}
+                @if (Session::has('success'))
                     <div class="alert alert-success alert-dismissible bg-green-400" role="alert">
                         <button type="button" class="close" data-dismiss="alert">
                             <i class="fa fa-times"></i>
@@ -72,13 +73,13 @@
                                         <td class="py-3 px-6 text-center">
                                             <div class="flex item-center justify-center">
                                                 @if ($res->fecha > $hoy)
-                                                    <a href="">{{--  aca va para editar --}}
-{{-- <button type="submit" id="{{ $res->id }}">Dar de
-                                                            baja</button>
-                                                    </a>
+                                                    <button type="submit"
+                                                        wire:click="$emit('deleteReserva', {{ $res->id }})">Dar de
+                                                        baja</button>
                                                 @else
                                                     <p>No se puede dar de baja</p>
                                                 @endif
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -92,23 +93,25 @@
                 </div>
             </div>
         </div>
-    <script>
-        $('#formEliminar').submit(function(e) {
-            e.preventDefault();
-            Swal.fire({
-                title: '¿Seguro que lo desea eliminar?',
-                text: "No podrá utilizar dicha reserva!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Dar de baja',
-                cancelButtonText: 'Cancelar'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    this.submit();
-                }
-            })
+    </x-app-layout>
+</div>
+<script>
+    console.log('asd');
+    Livewire.on('deleteReserva', idReserva => {
+        Swal.fire({
+            title: '¿Seguro que lo desea eliminar?',
+            text: "No podrá utilizar dicha reserva!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Dar de baja',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire('Eliminada.', 'La reserva ha sido eliminada', 'success');
+                Livewire.emit('delete', idReserva);
+            }
         })
-    </script>
-</x-app-layout> --}}
+    });
+</script>

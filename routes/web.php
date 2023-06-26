@@ -32,15 +32,13 @@ Route::controller(ReservaController::class)->group(function () {
         config('jetstream.auth_session'),
         'verified'
     ])->group(function () {
-        Route::get('/reservas', 'index')->name('reservas.inicio');
+        Route::get('/reservas', 'show')->name('reservas.inicio');
     });
-    // function () {
-    //     return view('reservas.indexReservas');
-    // }
+    Route::get('mesasZona', 'mesasZona')->name('reservas.mesas');
+    Route::post('reservas/store', 'store')->name('reservas.store');
+    Route::get('/realizarReserva', 'index')->name('reservas.realizar');
+    Route::post('reservas/eliminar', 'destroy')->name('reservas.eliminar');
 });
-
-
-
 
 Route::middleware([
     'auth:sanctum',
