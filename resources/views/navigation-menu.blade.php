@@ -1,5 +1,5 @@
 @php
-    $nav_links = [['name' => 'Inicio', 'route' => route('inicio'), 'active' => request()->routeIs('inicio')], ['name' => 'Reservas', 'route' => route('reservas.inicio'), 'active' => request()->routeIs('reservas.inicio')], ['name' => 'Promociones', 'route' => '#', 'active' => false], ['name' => 'Ver menú', 'route' => '#', 'active' => false]];
+    $nav_links = [['name' => 'Inicio', 'route' => route('inicio'), 'active' => request()->routeIs('inicio')], ['name' => 'Reservas', 'route' => route('reservas.inicio'), 'active' => request()->routeIs('reservas.inicio')], ['name' => 'Promociones', 'route' => '#', 'active' => false], ['name' => 'Ver menú', 'route' => route('menu.index'), 'active' => request()->routeIs('menu.index')]];
 @endphp
 
 
@@ -10,7 +10,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('inicio') }}">
                         <x-application-mark class="block h-9 w-auto" />
                     </a>
                 </div>

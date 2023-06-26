@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Productos;
+use App\Models\Rubro;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
@@ -13,7 +14,7 @@ class ProductosController extends Controller
      */
     public function index()
     {
-        //
+        return view ('menu.index');
     }
 
     /**
@@ -35,9 +36,10 @@ class ProductosController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Productos $productos)
+    public function show(Rubro $rubro)
     {
-        //
+        $productos = $rubro->productos;
+        return view ('menu.show',compact('productos'));
     }
 
     /**
