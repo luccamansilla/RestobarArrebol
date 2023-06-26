@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Productos;
+
 
 class Rubro extends Model
 {
@@ -14,7 +16,7 @@ class Rubro extends Model
 
     public function productos()
     {
-        return $this->hasMany(Producto::class, 'id_rubro');
+        return $this->hasMany(Productos::class, 'id_rubro');
     }
     public function promocion()
     {

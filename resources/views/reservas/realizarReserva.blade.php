@@ -3,7 +3,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <form action="{{ route('reservas.store') }}" method="POST" id="idFormulario">
         @csrf
-        <div class="-mx-4 flex flex-col bg-white px-3 py-3 items-center">
+        <div class="-mx-4 flex flex-col bg-gray-50 px-3 py-3 items-center">
             <div class="w-full px-4 md:w-1/2 lg:w-1/3">
                 <div class="mb-2">
                     <label for="" class="mb-3 block text-base font-medium text-black">

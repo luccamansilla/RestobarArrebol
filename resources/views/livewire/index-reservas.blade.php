@@ -9,7 +9,7 @@
                 {{-- max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 h-96 --}}
                 <div class="px-6 py-4 flex item-center">
                     <a href="{{ route('reservas.realizar') }}">
-                        <x-button openBtn="Realizar Reserva" />
+                        <x-button> Realizar Reserva</x-button>
                     </a>
                 </div>
                 {{-- Message --}}
@@ -87,7 +87,7 @@
                         </table>
                     @else
                         <div class="px-6 py-4">
-                            No existen ofertas que coincidan.
+                            No existen reservas en este momento.
                         </div>
                     @endif
                 </div>

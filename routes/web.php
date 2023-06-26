@@ -2,8 +2,9 @@
 
 use App\Http\Controllers\ReservaController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ReserveController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductosController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,10 +25,16 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/iniciarSesion', 'index')->name('users.index');
     Route::get('/Registrarse', 'register')->name('users.registro');
 });
-Route::controller(UserController::class)->group(function () {
-    Route::get('/iniciarSesion', 'index')->name('users.index');
-    Route::get('/Registrarse', 'register')->name('users.registro');
+Route::controller(ProductosController::class)->group(function () {
+    Route::get('/VerMenu', 'index')->name('menu.index');
+    Route::get('/Vercategoria/{rubro}', 'show')->name('menu.show');
 });
+
+Route::controller(ProductosController::class)->group(function () {
+    Route::get('/VerMenu', 'index')->name('menu.index');
+    Route::get('/Vercategoria/{rubro}', 'show')->name('menu.show');
+});
+
 
 Route::controller(ReservaController::class)->group(function () {
     //Route::get('reservas', 'index')->name('reservas.inicio');
@@ -42,14 +49,4 @@ Route::controller(ReservaController::class)->group(function () {
     Route::post('reservas/store', 'store')->name('reservas.store');
     Route::get('/realizarReserva', 'index')->name('reservas.realizar');
     Route::post('reservas/eliminar', 'destroy')->name('reservas.eliminar');
-});
-
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
 });
