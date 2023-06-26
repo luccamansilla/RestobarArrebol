@@ -12,8 +12,6 @@ class ProductosIndex extends Component
     protected $listeners = ['productos'];
     public function render()
     {
-        // $producto = Productos::all();
-        // dd($producto);
         return view('livewire.productos-index');
     }
     public function productos(Rubro $rubro){
