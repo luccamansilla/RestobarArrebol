@@ -1,5 +1,5 @@
 @php
-    $nav_links = [['name' => 'Inicio', 'route' => route('dashboard'), 'active' => request()->routeIs('dashboard')], ['name' => 'Reservas', 'route' => route('reservas.inicio'), 'active' => request()->routeIs('reservas.inicio')], ['name' => 'Promociones', 'route' => '#', 'active' => false], ['name' => 'Ver menú', 'route' => '#', 'active' => false]];
+    $nav_links = [['name' => 'Inicio', 'route' => route('inicio'), 'active' => request()->routeIs('inicio')], ['name' => 'Reservas', 'route' => route('reservas.inicio'), 'active' => request()->routeIs('reservas.inicio')], ['name' => 'Promociones', 'route' => '#', 'active' => false], ['name' => 'Ver menú', 'route' => '#', 'active' => false]];
 @endphp
 
 

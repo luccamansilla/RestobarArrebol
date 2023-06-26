@@ -19,6 +19,10 @@ use App\Http\Controllers\UserController;
 Route::get('/', function () {
     //return redirect()->view('reservas.inicio');
     return view('dashboard');
+})->name('inicio');
+Route::controller(UserController::class)->group(function () {
+    Route::get('/iniciarSesion', 'index')->name('users.index');
+    Route::get('/Registrarse', 'register')->name('users.registro');
 });
 Route::controller(UserController::class)->group(function () {
     Route::get('/iniciarSesion', 'index')->name('users.index');
