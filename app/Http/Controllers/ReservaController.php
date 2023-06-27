@@ -45,24 +45,26 @@ class ReservaController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            "fecha" => "required",
-            "zona" => "required",
-            "hora" => "required",
-            "cantidad" => "required",
-        ]);
+        return redirect()->route('home')->withFragment('reservation')->with('success', 'La reserva se ha generado correctamente.');
+        // dd($request);
+        // $request->validate([
+        //     "fecha" => "required",
+        //     "zona" => "required",
+        //     "hora" => "required",
+        //     "cantidad" => "required",
+        // ]);
 
-        //$nro_reserva = Reserva::all()->orderBy('id', 'desc')->first(); 
+        // //$nro_reserva = Reserva::all()->orderBy('id', 'desc')->first(); 
 
-        $reserva = Reserva::create([
-            'id_usuario' => Auth::user()->id,
-            'cantidad_personas' => $request->cantidad,
-            'id_zona' => $request->zona,
-            'id_hora' => $request->hora,
-            'fecha' => $request->fecha,
-        ]);
-        $reserva->save();
-        return redirect()->route('reservas.inicio')->with('success', 'La reserva se realizo correctamente.');
+        // $reserva = Reserva::create([
+        //     'id_usuario' => Auth::user()->id,
+        //     'cantidad_personas' => $request->cantidad,
+        //     'id_zona' => $request->zona,
+        //     'id_hora' => $request->hora,
+        //     'fecha' => $request->fecha,
+        // ]);
+        // $reserva->save();
+        // return redirect()->route('home')->with('success', 'La reserva se realizó correctamente.');
     }
 
     /**

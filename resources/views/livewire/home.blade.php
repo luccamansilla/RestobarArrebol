@@ -66,10 +66,65 @@
                                     <li class="scroll-to-section"><a href="#menu">Promociones</a></li>
                                     <li class="scroll-to-section"><a href="#offers">Menu</a></li>
                                     <li class="scroll-to-section"><a href="#reservation">Reservar</a></li>
-                                    <li class="scroll-to-section"><a href="">Ingresar</a></li>
-                                    <li class="scroll-to-section"><a href="">Registrarse</a></li>
+                                    @auth
+                                        <li class="dropdown" id="dropdownMenuButton" aria-haspopup="true"
+                                            aria-expanded="false" data-toggle="dropdown"><a
+                                                href="">{{ Auth::user()->name }}</a></li>
+                                        {{-- <div class="dropdown"> --}}
+                                        {{-- <button class="btn btn-primary dropdown-toggle" type="button"
+                                                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">
+                                                Opciones
+                                            </button> --}}
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href={{ route('profile.show') }}>Perfil</a>
+                                            <a class="dropdown-item"
+                                                href="{{ route('cerrarSesion') }}">Cerrar sesión</a>
+                                        </div>
+                                        {{-- </div> --}}
+                                        {{-- <x-dropdown align="right" width="48">
+                                            <x-slot name="trigger">
+                                                <span class="inline-flex rounded-md">
+                                                    <button type="button"
+                                                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
+                                                        {{ Auth::user()->name }}
+                                                        <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                                            fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                                            stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                                        </svg>
+                                                    </button>
+                                                </span>
+                                            </x-slot>
+                                            <x-slot name="content">
+                                                <!-- Account Management -->
+                                                <div class="block px-4 py-2 text-xs text-gray-400">
+                                                    {{ __('Manage Account') }}
+                                                </div>
 
+                                                <x-dropdown-link href="{{ route('profile.show') }}">
+                                                    {{ __('Profile') }}
+                                                </x-dropdown-link>
 
+                                                <div class="border-t border-gray-200"></div>
+
+                                                <!-- Authentication -->
+                                                <form method="POST" action="{{ route('logout') }}" x-data>
+                                                    @csrf
+
+                                                    <x-dropdown-link href="{{ route('logout') }}"
+                                                        @click.prevent="$root.submit();">
+                                                        {{ __('Log Out') }}
+                                                    </x-dropdown-link>
+                                                </form>
+                                            </x-slot>
+                                        </x-dropdown> --}}
+                                    @else
+                                        <li class="scroll-to-section"><a href="{{ route('users.index') }}">Ingresar</a></li>
+                                        <li class="scroll-to-section"><a
+                                                href="{{ route('users.registro') }}">Registrarse</a></li>
+                                    @endauth
                                 </ul>
                                 <a class='menu-trigger'>
                                     <span>Menu</span>
@@ -81,7 +136,14 @@
                 </div>
             </header>
             <!-- ***** Header Area End ***** -->
-
+            {{-- @if (Session::has('success'))
+            <div class="alert alert-success alert-dismissible bg-green-400" role="alert">
+                <button type="button" class="close" data-dismiss="alert">
+                    <i class="fa fa-times"></i>
+                </button>
+                <strong>Realizado!</strong> {{ session('success') }}
+            </div>
+            @endif --}}
             <!-- ***** Main Banner Area Start ***** -->
             <div id="top">
                 <div class="container-fluid">
@@ -319,7 +381,9 @@
                                             <div class="col-lg-auto">
                                                 <ul>
                                                     @foreach ($rubros as $index => $rubro)
-                                                        <li><a href='#tabs-{{ $index + 1 }}'>{{ $rubro->nombre_rubro }}</a></li>
+                                                        <li><a
+                                                                href='#tabs-{{ $index + 1 }}'>{{ $rubro->nombre_rubro }}</a>
+                                                        </li>
                                                     @endforeach
                                                 </ul>
                                             </div>
@@ -348,7 +412,8 @@
                                                                         voluptate
                                                                         soluta assumenda odio?</p>
                                                                     <div class="price">
-                                                                        <h6>${{ number_format($producto->precio, 0, ',', '.')}}</h6>
+                                                                        <h6>${{ number_format($producto->precio, 0, ',', '.') }}
+                                                                        </h6>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -487,6 +552,24 @@
             <section class="section" id="reservation">
                 <div class="container">
                     <div class="row">
+                        {{-- <div class="col-lg-6 align-self-right"> --}}
+                        <div class="right-text-content">
+                            @if (session('success'))
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <strong>
+                                        {{ session('success') }}
+                                    </strong>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                    {{-- </div> --}}
+                </div>
+                <div class="container">
+                    <div class="row">
                         <div class="col-lg-6 align-self-center">
                             <div class="left-text-content">
                                 <div class="section-heading">
@@ -514,21 +597,26 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="contact-form">
-                                <form id="contact" action="" method="post">
+                                <form action="{{ route('reservas.store') }}" method="POST" id="idFormulario">
+                                    @csrf
+
                                     <div class="row">
-                                        <div class="col-lg-12">
+                                        {{-- <div class="col-lg-12">
                                             <h4>Reserva</h4>
-                                        </div>
+                                        </div> --}}
+
                                         <div class="col-lg-6 col-sm-12">
                                             <fieldset>
                                                 <input name="name" type="text" id="name"
-                                                    placeholder="Tu nombre*" required="">
+                                                    placeholder="Tu nombre*">
                                             </fieldset>
                                         </div>
                                         <div class="col-lg-6 col-sm-12">
                                             <fieldset>
+                                                {{-- <input name="email" type="text" id="email"
+                                                    pattern="[^ @]*@[^ @]*" placeholder="Tu correo*"> --}}
                                                 <input name="email" type="text" id="email"
-                                                    pattern="[^ @]*@[^ @]*" placeholder="Tu correo*" required="">
+                                                    placeholder="Tu correo*">
                                             </fieldset>
                                         </div>
                                         {{-- <div class="col-lg-6 col-sm-12">
@@ -569,7 +657,8 @@
                                                 <select value="time" name="time" id="time">
                                                     <option value="time">Horario*</option>
                                                     @foreach ($horarios as $horario)
-                                                        <option id="{{ $horario->id }}">{{ $horario->hora }}</option>
+                                                        <option id="{{ $horario->id }}">{{ $horario->hora }}
+                                                        </option>
                                                     @endforeach
                                                 </select>
                                             </fieldset>
@@ -592,7 +681,7 @@
                                         </div>
                                         <div class="col-lg-12">
                                             <fieldset>
-                                                <button type="submit" id="form-submit"
+                                                <button onclick="confirmacion()" type="button" id="form-submit"
                                                     class="main-button-icon">Confirmar
                                                     reserva</button>
                                             </fieldset>
@@ -636,6 +725,7 @@
                     </div>
                 </div>
             </footer>
+
         </body>
 
         </html>
@@ -643,8 +733,32 @@
 </div>
 
 <!-- jQuery -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{{-- @push('js') --}}
+<script>
+    function confirmacion() {
+        Swal.fire({
+            title: '¿Desea confirmar la reserva?',
+            text: "No podra cambiar la información ingresada",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Reservar.',
+            cancelButtonText: 'Cancelar.'
+        }).then((result) => {
+            if (result.value) {
+                // Swal.fire(
+                //     'Reservado.',
+                //     'Ha realizado la reserva con éxito.',
+                // );
+                $('#idFormulario').submit();
+            }
+        });
+    };
+</script>
+{{-- @endpush --}}
 <script src="assets/js/jquery-2.1.0.min.js"></script>
-
 <!-- Bootstrap -->
 <script src="assets/js/popper.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
@@ -678,26 +792,3 @@
         });
     });
 </script>
-{{-- <script>
-                Livewire.on('productos', rubroId => {
-                    Swal.fire({
-                        title: '¿Está seguro que desea eliminar el usuario?',
-                        text: "No podrá deshacer esta operación.",
-                        type: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Si, eliminar.',
-                        cancelButtonText: 'Cancelar.'
-                    }).then((result) => {
-                        if (result.value) {
-                            Swal.fire(
-                                'Eliminado.',
-                                'El usuario ha sido eliminado.',
-                                'success'
-                            )
-                            Livewire.emit('products', rubroId);
-                        }
-                    })
-                });
-            </script> --}}

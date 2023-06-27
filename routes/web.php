@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ReservaController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductosController;
@@ -20,7 +21,7 @@ use App\Http\Controllers\ProductosController;
 
 Route::get('/', function () {
     //return redirect()->view('reservas.inicio');
-    return view('dashboard');
+    return view('home');
 })->name('inicio');
 Route::controller(UserController::class)->group(function () {
     Route::get('/iniciarSesion', 'index')->name('users.index');
@@ -52,3 +53,8 @@ Route::controller(ReservaController::class)->group(function () {
     Route::post('reservas/eliminar', 'destroy')->name('reservas.eliminar');
 });
 Route::get("/home",[HomeController::class,"index"])->name('home');
+
+Route::get('/logout', function () {
+    Auth::logout();
+    return redirect('home'); // Cambia '/' por la ruta a la que deseas redireccionar después del logout
+})->name('cerrarSesion');
