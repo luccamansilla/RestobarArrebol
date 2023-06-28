@@ -551,7 +551,7 @@
                                             <h4>Reserva</h4>
                                         </div> --}}
 
-                                        <div class="col-lg-6 col-sm-12">
+                                        {{-- <div class="col-lg-6 col-sm-12">
                                             <fieldset>
                                                 <input name="name" type="text" id="name"
                                                     placeholder="Tu nombre*">
@@ -561,75 +561,81 @@
                                             <fieldset>
                                                 {{-- <input name="email" type="text" id="email"
                                                     pattern="[^ @]*@[^ @]*" placeholder="Tu correo*"> --}}
-                                                <input name="email" type="text" id="email"
+                                        {{-- <input name="email" type="text" id="email"
                                                     placeholder="Tu correo*">
                                             </fieldset>
-                                        </div>
+                                        </div> --}}
                                         {{-- <div class="col-lg-6 col-sm-12">
                                       <fieldset>
                                         <input name="phone" type="text" id="phone" placeholder="Numero de teléfono*" required="">
                                       </fieldset>
                                     </div> --}}
-                                        <div class="col-md-6 col-sm-12">
+                                        <div class="col-md-12 col-sm-12 mt-5">
                                             <fieldset>
-                                                <select value="number-guests" name="number-guests"
-                                                    id="number-guests">
-                                                    <option value="number-guests">Número de invitados*</option>
-                                                    <option name="1" id="1">1</option>
-                                                    <option name="2" id="2">2</option>
-                                                    <option name="3" id="3">3</option>
-                                                    <option name="4" id="4">4</option>
-                                                    <option name="5" id="5">5</option>
-                                                    <option name="6" id="6">6</option>
-                                                    <option name="7" id="7">7</option>
-                                                    <option name="8" id="8">8</option>
+                                                <select value="0" name="cantidad_personas" id="cantidad"
+                                                    required>
+                                                    <option value="0" id="0" name="0">Número de
+                                                        invitados*</option>
+                                                    <option value="1" name="1" id="1">1</option>
+                                                    <option value="2" name="2" id="2">2</option>
+                                                    <option value="3" name="3" id="3">3</option>
+                                                    <option value="4" name="4" id="4">4</option>
+                                                    <option value="5" name="5" id="5">5</option>
+                                                    <option value="6" name="6" id="6">6</option>
+                                                    <option value="7" name="7" id="7">7</option>
+                                                    <option value="8" name="8" id="8">8</option>
                                                 </select>
                                             </fieldset>
                                         </div>
-                                        <div class="col-lg-6">
+                                        <div class="col-md-12 col-sm-12">
                                             {{-- <div id="filterDate2"> --}}
                                             <div class="" data-date-format="dd/mm/yyyy">
-                                                <input name="date" id="date" type="date"
+                                                <input name="fecha" id="date" type="date"
                                                     class="form-control" min="{{ $mañana }}"
-                                                    placeholder="dd/mm/yyyy *">
+                                                    placeholder="dia/mes/año *" required>
                                                 {{-- <div class="input-group-addon"> --}}
                                                 <span class="glyphicon glyphicon-th"></span>
                                                 {{-- </div> --}}
                                             </div>
                                             {{-- </div> --}}
                                         </div>
-                                        <div class="col-md-6 col-sm-12">
+                                        <div class="col-md-12 col-sm-12">
                                             <fieldset>
-                                                <select value="time" name="time" id="time">
-                                                    <option value="time">Horario*</option>
+                                                <select name="hora" id="time" required>
+                                                    <option value="0">Horario*</option>
                                                     @foreach ($horarios as $horario)
-                                                        <option id="{{ $horario->id }}">{{ $horario->hora }}
+                                                        <option value="{{ $horario->id }}">{{ $horario->hora }}
                                                         </option>
                                                     @endforeach
                                                 </select>
                                             </fieldset>
                                         </div>
-                                        <div class="col-md-6 col-sm-12">
+                                        <div class="col-md-12 col-sm-12">
                                             <fieldset>
-                                                <select value="zona" name="zona" id="zona"
-                                                    placeholder="Zona*">
+                                                <select name="zona" id="zona" required>
                                                     <option value="0">Zona*</option>
                                                     @foreach ($zonas as $zona)
-                                                        <option id="{{ $zona->id }}">{{ $zona->nombre }}</option>
+                                                        <option value="{{ $zona->id }}">{{ $zona->nombre }}
+                                                        </option>
                                                     @endforeach
                                                 </select>
                                             </fieldset>
                                         </div>
-                                        <div class="col-lg-12">
+                                        {{-- <div class="col-lg-12 mt-1">
                                             <fieldset>
-                                                <textarea name="message" rows="6" id="message" placeholder="Mensaje" required=""></textarea>
+                                            <p>La reserva se guardara con el nombre de su cuenta
+                                                ({{ Auth::user()->name }}).</p>
                                             </fieldset>
-                                        </div>
-                                        <div class="col-lg-12">
+                                        </div> --}}
+                                        <div class="col-lg-12 mt-5">
                                             <fieldset>
-                                                <button onclick="confirmacion()" type="button" id="form-submit"
-                                                    class="main-button-icon">Confirmar
-                                                    reserva</button>
+                                                @auth
+                                                    <button onclick="confirmacion()" type="button" id="form-submit"
+                                                        class="main-button-icon">Reservar</button>
+                                                @else
+                                                    <button onclick="mensaje()" type="button" id="form-submit"
+                                                        class="main-button-icon">Reservar</button>
+                                                @endauth
                                             </fieldset>
                                         </div>
                                     </div>
@@ -683,24 +689,37 @@
 {{-- @push('js') --}}
 <script>
     function confirmacion() {
-        Swal.fire({
-            title: '¿Desea confirmar la reserva?',
-            text: "No podra cambiar la información ingresada",
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Reservar.',
-            cancelButtonText: 'Cancelar.'
-        }).then((result) => {
-            if (result.value) {
-                // Swal.fire(
-                //     'Reservado.',
-                //     'Ha realizado la reserva con éxito.',
-                // );
-                $('#idFormulario').submit();
-            }
-        });
+        let fecha = document.getElementById("date").value;
+        let zona = document.getElementById("zona").value;
+        let hora = document.getElementById("time").value;
+        let cantidad = document.getElementById("cantidad").value;
+        // console.log(fecha);
+        // console.log(zona);
+        // console.log(hora);
+        // console.log(cantidad);
+        if (!fecha || zona == "0" || hora == "0" || cantidad == "0") {
+            Swal.fire('¡Cuidado!', 'Asegurese de ingresar todos los datos de la reserva.');
+        } else {
+            Swal.fire({
+                title: '¿Desea confirmar la reserva?',
+                text: "No podra cambiar la información ingresada",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Reservar.',
+                cancelButtonText: 'Cancelar.'
+            }).then((result) => {
+                if (result.value) {
+                    $('#idFormulario').submit();
+                }
+            });
+        }
+    }
+
+    function mensaje() {
+
+        Swal.fire('¡Atención!', 'Debe iniciar sesion o registrarse antes de realizar una reserva.');
     };
 </script>
 {{-- @endpush --}}

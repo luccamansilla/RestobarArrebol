@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class ReservaController extends Controller
 {
@@ -45,25 +46,33 @@ class ReservaController extends Controller
      */
     public function store(Request $request)
     {
+        Validator::extend('not_zero', function ($attribute, $value, $parameters, $validator) {
+            return $value != 0;
+        });
+        $request->validate([
+            "fecha" => "required",
+            "zona" => "required|not_zero",
+            "hora" => "required|not_zero",
+            "cantidad_personas" => "required|not_zero",
+        ], [
+            "fecha.required" => "El campo fecha es obligatorio.",
+            "fecha.not_zero" => "Seleccione una fecha.",
+            "zona.required" => "El campo zona es obligatorio.",
+            "zona.not_zero" => "Debe seleccionar una zona.",
+            "hora.required" => "El campo hora es obligatorio.",
+            "hora.not_zero" => "Seleccione un horario.",
+            "cantidad_personas.required" => "El campo cantidad_personas es obligatorio.",
+            "cantidad_personas.not_zero" => "El campo cantidad_personas no puede ser igual a cero."
+        ]);
+        $reserva = Reserva::create([
+            'id_usuario' => Auth::user()->id,
+            'cantidad_personas' => $request->cantidad_personas,
+            'id_zona' => $request->zona,
+            'id_hora' => $request->hora,
+            'fecha' => $request->fecha
+        ]);
+        $reserva->save();
         return redirect()->route('home')->withFragment('reservation')->with('success', 'La reserva se ha generado correctamente.');
-        // dd($request);
-        // $request->validate([
-        //     "fecha" => "required",
-        //     "zona" => "required",
-        //     "hora" => "required",
-        //     "cantidad" => "required",
-        // ]);
-
-        // //$nro_reserva = Reserva::all()->orderBy('id', 'desc')->first(); 
-
-        // $reserva = Reserva::create([
-        //     'id_usuario' => Auth::user()->id,
-        //     'cantidad_personas' => $request->cantidad,
-        //     'id_zona' => $request->zona,
-        //     'id_hora' => $request->hora,
-        //     'fecha' => $request->fecha,
-        // ]);
-        // $reserva->save();
         // return redirect()->route('home')->with('success', 'La reserva se realizó correctamente.');
     }
 

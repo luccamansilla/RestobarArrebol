@@ -52,7 +52,7 @@ Route::controller(ReservaController::class)->group(function () {
     Route::get('/realizarReserva', 'index')->name('reservas.realizar');
     Route::post('reservas/eliminar', 'destroy')->name('reservas.eliminar');
 });
-Route::get("/home",[HomeController::class,"index"])->name('home');
+Route::get("/home", [HomeController::class, "index"])->name('home');
 
 Route::get('/logout', function () {
     Auth::logout();
