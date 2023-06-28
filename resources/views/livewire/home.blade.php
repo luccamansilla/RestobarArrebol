@@ -46,8 +46,6 @@
                 </div>
             </div>
             <!-- ***** Preloader End ***** -->
-
-
             <!-- ***** Header Area Start ***** -->
             <header class="header-area header-sticky">
                 <div class="container">
@@ -70,56 +68,12 @@
                                         <li class="dropdown" id="dropdownMenuButton" aria-haspopup="true"
                                             aria-expanded="false" data-toggle="dropdown"><a
                                                 href="">{{ Auth::user()->name }}</a></li>
-                                        {{-- <div class="dropdown"> --}}
-                                        {{-- <button class="btn btn-primary dropdown-toggle" type="button"
-                                                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                                aria-expanded="false">
-                                                Opciones
-                                            </button> --}}
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item" href={{ route('profile.show') }}>Perfil</a>
-                                            <a class="dropdown-item"
-                                                href="{{ route('cerrarSesion') }}">Cerrar sesión</a>
+                                            <a class="dropdown-item" href="{{ route('reservas.inicio') }}">Mis reservas</a>
+                                            <a class="dropdown-item" href="{{ route('cerrarSesion') }}">Cerrar sesión</a>
+
                                         </div>
-                                        {{-- </div> --}}
-                                        {{-- <x-dropdown align="right" width="48">
-                                            <x-slot name="trigger">
-                                                <span class="inline-flex rounded-md">
-                                                    <button type="button"
-                                                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
-                                                        {{ Auth::user()->name }}
-                                                        <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
-                                                            fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                                            stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                                                        </svg>
-                                                    </button>
-                                                </span>
-                                            </x-slot>
-                                            <x-slot name="content">
-                                                <!-- Account Management -->
-                                                <div class="block px-4 py-2 text-xs text-gray-400">
-                                                    {{ __('Manage Account') }}
-                                                </div>
-
-                                                <x-dropdown-link href="{{ route('profile.show') }}">
-                                                    {{ __('Profile') }}
-                                                </x-dropdown-link>
-
-                                                <div class="border-t border-gray-200"></div>
-
-                                                <!-- Authentication -->
-                                                <form method="POST" action="{{ route('logout') }}" x-data>
-                                                    @csrf
-
-                                                    <x-dropdown-link href="{{ route('logout') }}"
-                                                        @click.prevent="$root.submit();">
-                                                        {{ __('Log Out') }}
-                                                    </x-dropdown-link>
-                                                </form>
-                                            </x-slot>
-                                        </x-dropdown> --}}
                                     @else
                                         <li class="scroll-to-section"><a href="{{ route('users.index') }}">Ingresar</a></li>
                                         <li class="scroll-to-section"><a
@@ -136,14 +90,6 @@
                 </div>
             </header>
             <!-- ***** Header Area End ***** -->
-            {{-- @if (Session::has('success'))
-            <div class="alert alert-success alert-dismissible bg-green-400" role="alert">
-                <button type="button" class="close" data-dismiss="alert">
-                    <i class="fa fa-times"></i>
-                </button>
-                <strong>Realizado!</strong> {{ session('success') }}
-            </div>
-            @endif --}}
             <!-- ***** Main Banner Area Start ***** -->
             <div id="top">
                 <div class="container-fluid">
