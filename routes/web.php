@@ -51,8 +51,14 @@ Route::controller(ReservaController::class)->group(function () {
     Route::post('reservas/store', 'store')->name('reservas.store');
     Route::get('/realizarReserva', 'index')->name('reservas.realizar');
     Route::post('reservas/eliminar', 'destroy')->name('reservas.eliminar');
+    Route::get('zonasFecha', 'zonasFecha')->name('home.zonas');
 });
-Route::get("/home", [HomeController::class, "index"])->name('home');
+Route::controller(HomeController::class)->group(function () {
+    Route::get('/home', 'index')->name('home.inicio');
+    Route::get('zonasFecha', 'zonasFecha')->name('zonasFecha');
+});
+// Route::get('zonasFecha', [HomeController::class, "zonasFecha"])->name('home.zonas');
+// Route::get("/home", [HomeController::class, "index"])->name('home');
 
 Route::get('/logout', function () {
     Auth::logout();

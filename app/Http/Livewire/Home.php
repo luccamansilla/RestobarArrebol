@@ -19,6 +19,6 @@ class Home extends Component
         $mañana = $dia->format('Y-m-d');
         $productos = Productos::orderBy('id_rubro')->get();
         $rubros = Rubro::orderBy('id_rubro')->get();
-        return view('livewire.home',compact('zonas','horarios','mañana','productos','rubros'));
+        return view('livewire.home', compact('zonas', 'horarios', 'mañana', 'productos', 'rubros'));
     }
 }

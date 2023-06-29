@@ -547,46 +547,6 @@
                                     @csrf
 
                                     <div class="row">
-                                        {{-- <div class="col-lg-12">
-                                            <h4>Reserva</h4>
-                                        </div> --}}
-
-                                        {{-- <div class="col-lg-6 col-sm-12">
-                                            <fieldset>
-                                                <input name="name" type="text" id="name"
-                                                    placeholder="Tu nombre*">
-                                            </fieldset>
-                                        </div>
-                                        <div class="col-lg-6 col-sm-12">
-                                            <fieldset>
-                                                {{-- <input name="email" type="text" id="email"
-                                                    pattern="[^ @]*@[^ @]*" placeholder="Tu correo*"> --}}
-                                        {{-- <input name="email" type="text" id="email"
-                                                    placeholder="Tu correo*">
-                                            </fieldset>
-                                        </div> --}}
-                                        {{-- <div class="col-lg-6 col-sm-12">
-                                      <fieldset>
-                                        <input name="phone" type="text" id="phone" placeholder="Numero de teléfono*" required="">
-                                      </fieldset>
-                                    </div> --}}
-                                        <div class="col-md-12 col-sm-12 mt-5">
-                                            <fieldset>
-                                                <select value="0" name="cantidad_personas" id="cantidad"
-                                                    required>
-                                                    <option value="0" id="0" name="0">Número de
-                                                        invitados*</option>
-                                                    <option value="1" name="1" id="1">1</option>
-                                                    <option value="2" name="2" id="2">2</option>
-                                                    <option value="3" name="3" id="3">3</option>
-                                                    <option value="4" name="4" id="4">4</option>
-                                                    <option value="5" name="5" id="5">5</option>
-                                                    <option value="6" name="6" id="6">6</option>
-                                                    <option value="7" name="7" id="7">7</option>
-                                                    <option value="8" name="8" id="8">8</option>
-                                                </select>
-                                            </fieldset>
-                                        </div>
                                         <div class="col-md-12 col-sm-12">
                                             {{-- <div id="filterDate2"> --}}
                                             <div class="" data-date-format="dd/mm/yyyy">
@@ -613,11 +573,28 @@
                                         <div class="col-md-12 col-sm-12">
                                             <fieldset>
                                                 <select name="zona" id="zona" required>
-                                                    <option value="0">Zona*</option>
+                                                    {{-- <option value="0">Zona*</option>
                                                     @foreach ($zonas as $zona)
                                                         <option value="{{ $zona->id }}">{{ $zona->nombre }}
                                                         </option>
-                                                    @endforeach
+                                                    @endforeach --}}
+                                                </select>
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <fieldset>
+                                                <select value="0" name="cantidad_personas" id="cantidad"
+                                                    required>
+                                                    <option value="0" id="0" name="0">Número de
+                                                        invitados*</option>
+                                                    <option value="1" name="1" id="1">1</option>
+                                                    <option value="2" name="2" id="2">2</option>
+                                                    <option value="3" name="3" id="3">3</option>
+                                                    <option value="4" name="4" id="4">4</option>
+                                                    <option value="5" name="5" id="5">5</option>
+                                                    <option value="6" name="6" id="6">6</option>
+                                                    <option value="7" name="7" id="7">7</option>
+                                                    <option value="8" name="8" id="8">8</option>
                                                 </select>
                                             </fieldset>
                                         </div>
@@ -756,4 +733,22 @@
 
         });
     });
+</script>
+<script>
+    // $("#date").change(function() {
+    //     $value = $(this).val();
+
+    //     $.ajax({
+    //         type: 'get',
+    //         url: '{{ URL::to('zonasFecha') }}',
+    //         data: {
+    //             'fecha': $value
+    //         },
+
+    //         success: function(data) {
+    //             console.log(data);
+    //             $('#zona').html(data);
+    //         }
+    //     });
+    // })
 </script>

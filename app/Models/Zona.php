@@ -20,4 +20,13 @@ class Zona extends Model
     {
         return $this->hasMany(Reserva::class, 'id_zona');
     }
+    public static function cantidadZona($id)
+    {
+        $num = 0;
+        $mesas = Mesa::where('id_zona', '=', $id)->get();
+        foreach ($mesas as $mesa) {
+            $num = $num + $mesa->cantidad_personas;
+        }
+        return $num;
+    }
 }
