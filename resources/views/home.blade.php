@@ -422,7 +422,9 @@
                     <div class="contact-form">
                         <form action="{{ route('reservas.store') }}" method="POST" id="idFormulario">
                             @csrf
-
+                                    @auth
+                                        <input name="id_usuario" value="{{ Auth::user()->id }}" hidden>
+                                    @endauth
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 mt-5">
                                     {{-- <div id="filterDate2"> --}}
