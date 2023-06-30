@@ -38,6 +38,7 @@ class HomeController extends Controller
             ->get();
         $zonas = Zona::all();
         $output .= '<option value="0" name="0">Seleccionar una zona</option>';
+        $cantidadZonas = 0;
         foreach ($zonas as $zona) {
             $capacidadZona = $zona->cantidadZona($zona->id);
             // Busca la zona correspondiente en los resultados de cantidad de personas por zona
@@ -52,11 +53,15 @@ class HomeController extends Controller
                 // Agrega la zona al arreglo de zonas filtradas
                 // $zonasFiltradas[] = $zona;
                 $restante = $capacidadZona - $personasReservadas;
-                if ($restante > 8){
+                if ($restante > 8) {
                     $restante = 8;
                 }
                 $output .= '<option value="' . $zona->id . '" name="' . $restante . '">' . $zona->nombre . '</option>';
+                $cantidadZonas = $cantidadZonas + 1;
             }
+        }
+        if ($cantidadZonas == 0) {
+            $output = '<option value="0" name="0">Sin disponibilidad.</option>';
         }
         return response($output);
     }

@@ -463,7 +463,7 @@
                                     </fieldset>
                                 </div>
                                 <div class="col-md-12 col-sm-12">
-                                    <fieldset class="text-white">Cantidad de invitados (según
+                                    <fieldset class="text-white">Cantidad de personas (según
                                         disponibilidad)
                                         <select value="0" name="cantidad_personas" id="cantidad" disabled>
                                             <option value="0" id="0" name="0">Seleccionar cantidad
@@ -606,7 +606,12 @@
             $("#cantidad").attr("disabled", true);
             $("#zonaid").attr("disabled", true);
         } else {
+            $("#time").val("0");
+            $("#cantidad").val("0");
+            $("#zonaid").val("0");
             $("#time").attr("disabled", false);
+            $("#zonaid").attr("disabled", true);
+            $("#cantidad").attr("disabled", true);
         }
     });
 </script>
