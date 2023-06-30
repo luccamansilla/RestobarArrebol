@@ -12,7 +12,7 @@
       <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap"
           rel="stylesheet">
 
-      <title>{{ config('app.name', 'Restobar Arrebol') }}</title>
+      <title>Restobar Arrebol</title>
 
       <!-- Fonts -->
       <link rel="preconnect" href="https://fonts.bunny.net">
@@ -46,8 +46,8 @@
                   <div class="col-12">
                       <nav class="main-nav">
                           <!-- ***** Logo Start ***** -->
-                          <a href="index.html" class="logo">
-                              <img src="assets/images/klassy-logo.png" align="klassy cafe html template">
+                          <a href="{{ route('inicio') }}" class="logo">
+                              <img src="assets/images/restobar-logo.png" align="klassy cafe html template">
                           </a>
                           <!-- ***** Logo End ***** -->
                           <!-- ***** Menu Start ***** -->
@@ -169,9 +169,11 @@
                           </table>
                       </form>
                   @else
-                      <div class="px-6 py-4">
-                          No existen reservas en este momento.
-                      </div>
+                      {{-- <div class="card-footer"> --}}
+                          <div class="alert alert-secondary" role="alert">
+                              No existen reservas en este momento.
+                          </div>
+                      {{-- </div> --}}
                   @endif
               </div>
           </div>

@@ -37,7 +37,7 @@ class HomeController extends Controller
             ->groupBy('zona_id', 'zona_nombre')
             ->get();
         $zonas = Zona::all();
-        $output .= '<option value="0" name="0">Elija una zona*</option>';
+        $output .= '<option value="0" name="0">Seleccionar una zona</option>';
         foreach ($zonas as $zona) {
             $capacidadZona = $zona->cantidadZona($zona->id);
             // Busca la zona correspondiente en los resultados de cantidad de personas por zona
