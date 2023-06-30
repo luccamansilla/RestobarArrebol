@@ -57,7 +57,7 @@
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li class="scroll-to-section"><a href="#top" class="active">Inicio</a></li>
+                            <li class="scroll-to-section"><a href="#top">Inicio</a></li>
                             <li class="scroll-to-section"><a href="#about">Sobre Nosotros</a></li>
                             <li class="scroll-to-section"><a href="#menu">Promociones</a></li>
                             <li class="scroll-to-section"><a href="#offers">Menu</a></li>

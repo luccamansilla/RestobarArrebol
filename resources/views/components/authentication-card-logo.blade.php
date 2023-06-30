@@ -1,1 +1,1 @@
-<img src="{{ asset('/img/Restobar.svg') }}" alt="" style="width: 250px">
+<img src="assets/images/logoRestobar.png" alt="" style="width: 250px">
