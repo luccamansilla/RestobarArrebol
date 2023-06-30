@@ -341,7 +341,8 @@
                                                             {{-- <img src="assets/images/tab-item-01.png"
                                                                     alt=""> --}}
                                                             <h4>{{ $producto->nombre }}</h4>
-                                                            <p class="text-justify">Lorem ipsum dolor sit amet consectetur
+                                                            <p class="text-justify">Lorem ipsum dolor sit amet
+                                                                consectetur
                                                                 adipisicing
                                                                 elit. Veritatis debitis soluta, laborum eligendi
                                                                 aut
@@ -422,9 +423,9 @@
                     <div class="contact-form">
                         <form action="{{ route('reservas.store') }}" method="POST" id="idFormulario">
                             @csrf
-                                    @auth
-                                        <input name="id_usuario" value="{{ Auth::user()->id }}" hidden>
-                                    @endauth
+                            @auth
+                                <input name="id_usuario" value="{{ Auth::user()->id }}" hidden>
+                            @endauth
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 mt-5">
                                     {{-- <div id="filterDate2"> --}}
@@ -440,7 +441,7 @@
                                 </div>
                                 <div class="col-md-12 col-sm-12">
                                     <fieldset class="text-white">Horario
-                                        <select name="hora" id="time" required>
+                                        <select name="hora" id="time" disabled>
                                             <option value="0">Seleccionar un horario</option>
                                             @foreach ($horarios as $horario)
                                                 <option value="{{ $horario->id }}">{{ $horario->hora }}
@@ -595,23 +596,44 @@
     });
 </script>
 <script>
+    $("#date").change(function() {
+        $valor = $('#date').val();
+        if (!$valor) {
+            $("#cantidad").val("0");
+            $("#zonaid").val("0");
+            $("#time").val("0");
+            $("#time").attr("disabled", true);
+            $("#cantidad").attr("disabled", true);
+            $("#zonaid").attr("disabled", true);
+        } else {
+            $("#time").attr("disabled", false);
+        }
+    });
+</script>
+<script>
     $("#time").change(function() {
         $value = $('#time').val();
         $value2 = $('#date').val();
-        $.ajax({
-            type: 'get',
-            url: '{{ URL::to('zonasFecha') }}',
-            data: {
-                'fecha': $value2,
-                'horario': $value
-            },
-
-            success: function(data) {
-                console.log(data);
-                $("#zonaid").removeAttr("disabled");
-                $('#zonaid').html(data);
-            }
-        });
+        if ($value == "0") {
+            $("#cantidad").val("0");
+            $("#zonaid").val("0")
+            $("#cantidad").attr("disabled", true);
+            $("#zonaid").attr("disabled", true);
+        } else {
+            $.ajax({
+                type: 'get',
+                url: '{{ URL::to('zonasFecha') }}',
+                data: {
+                    'fecha': $value2,
+                    'horario': $value
+                },
+                success: function(data) {
+                    console.log(data);
+                    $("#zonaid").removeAttr("disabled");
+                    $('#zonaid').html(data);
+                }
+            });
+        }
     });
 </script>
 <script>
