@@ -52,6 +52,9 @@ class HomeController extends Controller
                 // Agrega la zona al arreglo de zonas filtradas
                 // $zonasFiltradas[] = $zona;
                 $restante = $capacidadZona - $personasReservadas;
+                if ($restante > 8){
+                    $restante = 8;
+                }
                 $output .= '<option value="' . $zona->id . '" name="' . $restante . '">' . $zona->nombre . '</option>';
             }
         }
