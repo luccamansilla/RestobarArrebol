@@ -432,7 +432,9 @@
                             <div class="contact-form">
                                 <form action="{{ route('reservas.store') }}" method="POST" id="idFormulario">
                                     @csrf
-
+                                    @auth
+                                        <input name="id_usuario" value="{{ Auth::user()->id }}" hidden>
+                                    @endauth
                                     <div class="row">
                                         <div class="col-md-12 col-sm-12 mt-5">
                                             {{-- <div id="filterDate2"> --}}
@@ -470,7 +472,7 @@
                                             </fieldset>
                                         </div>
                                         <div class="col-md-12 col-sm-12">
-                                            <fieldset class="text-white">Cantidad de invitados (limite según
+                                            <fieldset class="text-white">Cantidad de personas (limite según
                                                 disponibilidad)
                                                 <select value="0" name="cantidad_personas" id="cantidad"
                                                     disabled>

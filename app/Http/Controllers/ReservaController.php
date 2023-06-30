@@ -50,6 +50,7 @@ class ReservaController extends Controller
             return $value != 0;
         });
         $request->validate([
+            "id_usuario" => "required",
             "fecha" => "required",
             "zona" => "required|not_zero",
             "hora" => "required|not_zero",
@@ -65,7 +66,7 @@ class ReservaController extends Controller
             "cantidad_personas.not_zero" => "El campo cantidad_personas no puede ser igual a cero."
         ]);
         $reserva = Reserva::create([
-            'id_usuario' => Auth::user()->id,
+            'id_usuario' => $request->id_usuario,
             'cantidad_personas' => $request->cantidad_personas,
             'id_zona' => $request->zona,
             'id_hora' => $request->hora,
