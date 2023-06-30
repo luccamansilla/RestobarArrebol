@@ -82,8 +82,8 @@
       <div class="mt-28">
           {{-- Close your eyes. Count to one. That is how long forever feels. --}}
           <div class="w-11/12 mx-auto place-items-center max-h-full px-6">
-              @if (session('success'))
-                  <div class="mb-3 inline-flex w-full items-center rounded-lg bg-success-100 px-6 py-5 text-base text-success-700 bg-green-400"
+              {{-- @if (session('success'))
+                  <div class="mb-3 inline-flex w-full items-center rounded-lg bg-success-100 px-1 py-1 text-base text-success-700 bg-green-400"
                       role="alert">
                       <span class="mr-2">
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
@@ -95,7 +95,17 @@
                       </span>
                       {{ session('success') }}
                   </div>
-              @endif
+              @endif --}}
+              @if (session('success'))
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  <strong>
+                      {{ session('success') }}
+                  </strong>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+          @endif
               <div class="scroll-containerChico mx-auto">
                   @if ($reservas->count())
                       <form action="{{ route('reservas.eliminar') }}" method="POST" id="idEliminar">

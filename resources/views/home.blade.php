@@ -308,7 +308,7 @@
                 <div class="col-lg-4 offset-lg-4 text-center">
                     <div class="section-heading">
                         <h6>Menú</h6>
-                        <h2>Nuestros platos con sabores únicos</h2>
+                        <h2>Nuestros platos y bebidas.</h2>
                     </div>
                 </div>
             </div>
