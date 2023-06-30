@@ -36,19 +36,25 @@ class HomeController extends Controller
             ->where('reserva.id_hora', $request->horario)
             ->groupBy('zona_id', 'zona_nombre')
             ->get();
-        // $cantidadPersonasPorZona = Zona::all();
-        // $zonas = Zona::all();
-        // $vecPersonas = array();
-        foreach ($cantidadPersonasPorZona as $cant) {
-            // array_push($vecPersonas, $cant);
-            $output .= '<option>' . $cant->zona_nombre . '' . $cant->cantidad_personas_reservadas . '</option>';
+        $zonas = Zona::all();
+        $output .= '<option value="0" name="0">Elija una zona*</option>';
+        foreach ($zonas as $zona) {
+            $capacidadZona = $zona->cantidadZona($zona->id);
+            // Busca la zona correspondiente en los resultados de cantidad de personas por zona
+            $zonaReservada = $cantidadPersonasPorZona->firstWhere('zona_id', $zona->id);
+            if ($zonaReservada) {
+                $personasReservadas = $zonaReservada->cantidad_personas_reservadas;
+            } else {
+                $personasReservadas = 0;
+            }
+            // Compara la capacidad de la zona con la cantidad de personas reservadas
+            if ($capacidadZona > $personasReservadas) {
+                // Agrega la zona al arreglo de zonas filtradas
+                // $zonasFiltradas[] = $zona;
+                $restante = $capacidadZona - $personasReservadas;
+                $output .= '<option value="' . $zona->id . '" name="' . $restante . '">' . $zona->nombre . '</option>';
+            }
         }
-        // foreach ($zonas as $zona) {
-        //     if(){
-
-        //     }
-        //     $output .= '<option id="' . $mesa->nro_mesa . '" value="' . $mesa->nro_mesa . '">' . $mesa->nro_mesa . '</option>';
-        // }
         return response($output);
     }
 }

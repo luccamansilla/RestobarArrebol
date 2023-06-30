@@ -159,7 +159,7 @@
                                                           de
                                                           baja</button>
                                                   @else
-                                                      <p>No se puede dar de baja</p>
+                                                      <p>Reserva ya efectuada</p>
                                                   @endif
                                               </div>
                                           </td>

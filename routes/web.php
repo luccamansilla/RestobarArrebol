@@ -54,6 +54,7 @@ Route::controller(ReservaController::class)->group(function () {
     Route::get('zonasFecha', 'zonasFecha')->name('home.zonas');
 });
 Route::controller(HomeController::class)->group(function () {
+    Route::get('/', 'index')->name('inicio');
     Route::get('/home', 'index')->name('home.inicio');
     Route::get('zonasFecha', 'zonasFecha')->name('zonasFecha');
 });

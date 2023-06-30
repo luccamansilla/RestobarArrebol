@@ -372,123 +372,6 @@
                                                 </div>
                                             </article>
                                         @endfor
-                                        {{-- <article id='tabs-2'>
-                                            <div class="row">
-                                                @foreach ($productos as $producto)
-                                                    @if ($producto->id_rubro == 2)
-                                                        <div class="col-lg-6">
-                                                            <div class="tab-item">
-                                                                <img src="assets/images/tab-item-01.png"
-                                                                    alt="">
-                                                                <h4>{{ $producto->nombre }}</h4>
-                                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing
-                                                                    elit. Veritatis debitis soluta, laborum eligendi aut
-                                                                    ducimus? Deleniti veniam minima repellendus, debitis
-                                                                    alias ipsam obcaecati doloremque ad quo voluptate
-                                                                    soluta assumenda odio?</p>
-                                                                <div class="price">
-                                                                    <h6>${{ $producto->precio }}</h6>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    @endif
-                                                @endforeach
-                                            </div>
-                                        </article>
-                                        <article id='tabs-3'>
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <div class="row">
-                                                        <div class="left-list">
-                                                            <div class="col-lg-12">
-                                                                <div class="tab-item">
-                                                                    <img src="assets/images/tab-item-05.png"
-                                                                        alt="">
-                                                                    <h4>Eggs Omelette</h4>
-                                                                    <p>Lorem ipsum dolor sit amet, consectetur koit
-                                                                        adipiscing
-                                                                        elit, sed do.</p>
-                                                                    <div class="price">
-                                                                        <h6>$14</h6>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-12">
-                                                                <div class="tab-item">
-                                                                    <img src="assets/images/tab-item-03.png"
-                                                                        alt="">
-                                                                    <h4>Orange Juice</h4>
-                                                                    <p>Lorem ipsum dolor sit amet, consectetur koit
-                                                                        adipiscing
-                                                                        elit, sed do.</p>
-                                                                    <div class="price">
-                                                                        <h6>$18</h6>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-12">
-                                                                <div class="tab-item">
-                                                                    <img src="assets/images/tab-item-02.png"
-                                                                        alt="">
-                                                                    <h4>Fruit Salad</h4>
-                                                                    <p>Lorem ipsum dolor sit amet, consectetur koit
-                                                                        adipiscing
-                                                                        elit, sed do.</p>
-                                                                    <div class="price">
-                                                                        <h6>$10</h6>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="row">
-                                                        <div class="right-list">
-                                                            <div class="col-lg-12">
-                                                                <div class="tab-item">
-                                                                    <img src="assets/images/tab-item-06.png"
-                                                                        alt="">
-                                                                    <h4>Fresh Chicken Salad</h4>
-                                                                    <p>Lorem ipsum dolor sit amet, consectetur koit
-                                                                        adipiscing
-                                                                        elit, sed do.</p>
-                                                                    <div class="price">
-                                                                        <h6>$8.50</h6>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-12">
-                                                                <div class="tab-item">
-                                                                    <img src="assets/images/tab-item-01.png"
-                                                                        alt="">
-                                                                    <h4>Dollma Pire</h4>
-                                                                    <p>Lorem ipsum dolor sit amet, consectetur koit
-                                                                        adipiscing
-                                                                        elit, sed do.</p>
-                                                                    <div class="price">
-                                                                        <h6>$9</h6>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-12">
-                                                                <div class="tab-item">
-                                                                    <img src="assets/images/tab-item-04.png"
-                                                                        alt="">
-                                                                    <h4>Omelette & Cheese</h4>
-                                                                    <p>Lorem ipsum dolor sit amet, consectetur koit
-                                                                        adipiscing
-                                                                        elit, sed do.</p>
-                                                                    <div class="price">
-                                                                        <h6>$11</h6>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </article> --}}
                                     </section>
                                 </div>
                             </div>
@@ -575,9 +458,10 @@
                                             </fieldset>
                                         </div>
                                         <div class="col-md-12 col-sm-12">
-                                            <fieldset>
-                                                <select name="zona" id="zonaid">
-                                                    {{-- <option value="0">Zona*</option>
+                                            <fieldset class="text-white">Zonas disponibles
+                                                <select name="zona" id="zonaid" disabled>
+                                                    <option value="0">Elija una zona*</option>
+                                                    {{-- 
                                                     @foreach ($zonas as $zona)
                                                         <option value="{{ $zona->id }}">{{ $zona->nombre }}
                                                         </option>
@@ -586,28 +470,15 @@
                                             </fieldset>
                                         </div>
                                         <div class="col-md-12 col-sm-12">
-                                            <fieldset>
+                                            <fieldset class="text-white">Cantidad de invitados (limite según
+                                                disponibilidad)
                                                 <select value="0" name="cantidad_personas" id="cantidad"
-                                                    required>
-                                                    <option value="0" id="0" name="0">Número de
-                                                        invitados*</option>
-                                                    <option value="1" name="1" id="1">1</option>
-                                                    <option value="2" name="2" id="2">2</option>
-                                                    <option value="3" name="3" id="3">3</option>
-                                                    <option value="4" name="4" id="4">4</option>
-                                                    <option value="5" name="5" id="5">5</option>
-                                                    <option value="6" name="6" id="6">6</option>
-                                                    <option value="7" name="7" id="7">7</option>
-                                                    <option value="8" name="8" id="8">8</option>
+                                                    disabled>
+                                                    <option value="0" id="0" name="0">Cantidad de
+                                                        personas*</option>
                                                 </select>
                                             </fieldset>
                                         </div>
-                                        {{-- <div class="col-lg-12 mt-1">
-                                            <fieldset>
-                                            <p>La reserva se guardara con el nombre de su cuenta
-                                                ({{ Auth::user()->name }}).</p>
-                                            </fieldset>
-                                        </div> --}}
                                         <div class="col-lg-12 mt-5">
                                             <fieldset>
                                                 @auth
@@ -649,9 +520,7 @@
                         </div>
                         <div class="col-lg-4 col-xs-12">
                             <div class="left-text-content">
-                                <p>© Copyright Klassy Cafe Co.
-
-                                    <br>Design: TemplateMo
+                                <p>© Copyright Restobar Arrebol.
                                 </p>
                             </div>
                         </div>
@@ -674,10 +543,6 @@
         let zona = document.getElementById("zonaid").value;
         let hora = document.getElementById("time").value;
         let cantidad = document.getElementById("cantidad").value;
-        // console.log(fecha);
-        // console.log(zona);
-        // console.log(hora);
-        // console.log(cantidad);
         if (!fecha || zona == "0" || hora == "0" || cantidad == "0") {
             Swal.fire('¡Cuidado!', 'Asegurese de ingresar todos los datos de la reserva.');
         } else {
@@ -752,8 +617,30 @@
 
             success: function(data) {
                 console.log(data);
+                $("#zonaid").removeAttr("disabled");
                 $('#zonaid').html(data);
             }
         });
+    });
+</script>
+<script>
+    var cantidad = document.getElementById('zonaid');
+    var invitados = document.getElementById('cantidad');
+    cantidad.addEventListener('change', function() {
+        invitados.innerHTML = '';
+        // Limpiar opciones anteriores del segundo select
+        var disponible = cantidad.options[cantidad.selectedIndex].getAttribute('name');
+        invitados.removeAttribute('disabled');
+        var option0 = document.createElement('option');
+        option0.value = 0;
+        option0.text = 'Elija un horario*';
+        invitados.appendChild(option0);
+        // Crear nuevas opciones en el segundo select según el valor seleccionado en el primer select
+        for (var i = 1; i <= disponible; i++) {
+            var option = document.createElement('option');
+            option.value = i;
+            option.text = i;
+            invitados.appendChild(option);
+        }
     });
 </script>

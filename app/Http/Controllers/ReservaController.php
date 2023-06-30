@@ -72,7 +72,7 @@ class ReservaController extends Controller
             'fecha' => $request->fecha
         ]);
         $reserva->save();
-        return redirect()->route('home')->withFragment('reservation')->with('success', 'La reserva se ha generado correctamente.');
+        return redirect()->route('home.inicio')->withFragment('reservation')->with('success', 'La reserva se ha generado correctamente.');
         // return redirect()->route('home')->with('success', 'La reserva se realizó correctamente.');
     }
 
