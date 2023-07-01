@@ -9,7 +9,6 @@ class Promocion extends Model
 {
     use HasFactory;
     protected $table = 'promocion';
-    protected $primaryKey = 'id_promocion';
     public $timestamps = false;
     public function rubros()
     {

@@ -36,13 +36,13 @@
 <body>
 
     <!-- ***** Preloader Start ***** -->
-    <div id="preloader">
+    {{-- <div id="preloader">
         <div class="jumper">
             <div></div>
             <div></div>
             <div></div>
         </div>
-    </div>
+    </div> --}}
     <!-- ***** Preloader End ***** -->
     <!-- ***** Header Area Start ***** -->
     <header class="header-area header-sticky">
@@ -59,8 +59,8 @@
                         <ul class="nav">
                             <li class="scroll-to-section"><a href="#top" class="active">Inicio</a></li>
                             <li class="scroll-to-section"><a href="#about">Sobre Nosotros</a></li>
-                            <li class="scroll-to-section"><a href="#menu">Promociones</a></li>
-                            <li class="scroll-to-section"><a href="#offers">Menu</a></li>
+                            {{-- <li class="scroll-to-section"><a href="#menu">Promociones</a></li> --}}
+                            <li class="scroll-to-section"><a href="#offers">Menu / Promociones</a></li>
                             <li class="scroll-to-section"><a href="#reservation">Reservar</a></li>
                             @auth
                                 <li class="dropdown" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false"
@@ -149,7 +149,7 @@
                             artesanales de las marcas más reconocidas del país. Te damos la bienvenida a un
                             lugar donde la pasión por la buena comida se
                             encuentra con la cerveza artesanal de primera calidad, brindándote una experiencia
-                            gastronómica y cervecera inigualable."</p>
+                            gastronómica y cervecera inigualable.</p>
                         <div class="row">
                             <div class="col-4">
                                 <img src="assets/images/about-thumb-01.jpg" alt="">
@@ -304,14 +304,20 @@
     {{-- Dice id=offers pero en realidad es menu si lo cambio se rompe --}}
     <section class="section" id="offers">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-4 offset-lg-4 text-center">
+            <div>
+                <div class="text-center">
                     <div class="section-heading">
-                        <h6>Menú</h6>
+                        <h6>Menú y promociones</h6>
                         <h2>Nuestros platos y bebidas.</h2>
+                        <p class="text-justify text-center">Ofrecemos descuentos para productos seleccionados y
+                            categorias completas.</p>
                     </div>
                 </div>
             </div>
+            {{-- @foreach ($promociones as $promocion)
+                {{ $promocion }}
+            @endforeach --}}
+
             <div class="row">
                 <div class="col-lg-auto">
                     <div class="row" id="tabs">
@@ -340,21 +346,28 @@
                                                         <div class="tab-item">
                                                             {{-- <img src="assets/images/tab-item-01.png"
                                                                     alt=""> --}}
-                                                            <h4>{{ $producto->nombre }}</h4>
-                                                            <p class="text-justify">Lorem ipsum dolor sit amet
-                                                                consectetur
-                                                                adipisicing
-                                                                elit. Veritatis debitis soluta, laborum eligendi
-                                                                aut
-                                                                ducimus? Deleniti veniam minima repellendus,
-                                                                debitis
-                                                                alias ipsam obcaecati doloremque ad quo
-                                                                voluptate
-                                                                soluta assumenda odio?</p>
-                                                            <div class="price">
-                                                                <h6>${{ number_format($producto->precio, 0, ',', '.') }}
-                                                                </h6>
+                                                            <div class="d-inline">
+                                                                <h4>{{ $producto->nombre }}@if ($producto->promocion)
+                                                                    (Descuento del %{{$producto->promocion->descuento}})
+                                                                @endif</h4>
+                                                                
                                                             </div>
+                                                            <p class="text-justify">{{$producto->descripcion}}</p>
+                                                            <div class="price">
+                                                                @if ($producto->promocion)
+                                                                    <h6 class="mr-2">
+                                                                        <s>${{ number_format($producto->precio, 0, ',', '.') }}</s>
+                                                                    </h6>
+                                                                    <h6 class="mr-2">
+                                                                        ${{ number_format($producto->precio * (1 - $producto->promocion->descuento / 100), 0, ',', '.') }}
+                                                                    </h6>
+                                                                @else
+                                                                    <h6 class="mr-2">
+                                                                        ${{ number_format($producto->precio, 0, ',', '.') }}
+                                                                    </h6>
+                                                                @endif
+                                                            </div>
+
                                                         </div>
                                                     </div>
                                                 @endif

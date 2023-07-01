@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Horarios;
 use App\Models\Mesa;
 use App\Models\Productos;
+use App\Models\Promocion;
 use App\Models\Reserva;
 use App\Models\Rubro;
 use App\Models\Zona;
@@ -23,7 +24,8 @@ class HomeController extends Controller
         $mañana = $dia->format('Y-m-d');
         $productos = Productos::orderBy('id_rubro')->get();
         $rubros = Rubro::orderBy('id_rubro')->get();
-        return view('home', compact('zonas', 'horarios', 'mañana', 'productos', 'rubros'));
+        $promociones = Promocion::all();
+        return view('home', compact('zonas', 'horarios', 'mañana', 'productos', 'rubros','promociones'));
         // return view('home');
     }
     public function zonasFecha(Request $request)
