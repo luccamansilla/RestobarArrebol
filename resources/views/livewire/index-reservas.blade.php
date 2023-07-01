@@ -97,15 +97,15 @@
                   </div>
               @endif --}}
               @if (session('success'))
-              <div class="alert alert-success alert-dismissible fade show" role="alert">
-                  <strong>
-                      {{ session('success') }}
-                  </strong>
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-              </div>
-          @endif
+                  <div class="alert alert-success alert-dismissible fade show" role="alert">
+                      <strong>
+                          {{ session('success') }}
+                      </strong>
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+              @endif
               <div class="scroll-containerChico mx-auto">
                   @if ($reservas->count())
                       <form action="{{ route('reservas.eliminar') }}" method="POST" id="idEliminar">
@@ -180,9 +180,9 @@
                       </form>
                   @else
                       {{-- <div class="card-footer"> --}}
-                          <div class="alert alert-secondary" role="alert">
-                              No existen reservas en este momento.
-                          </div>
+                      <div class="alert alert-secondary" role="alert">
+                          No existen reservas en este momento.
+                      </div>
                       {{-- </div> --}}
                   @endif
               </div>
