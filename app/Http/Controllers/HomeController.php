@@ -24,8 +24,8 @@ class HomeController extends Controller
         $mañana = $dia->format('Y-m-d');
         $productos = Productos::orderBy('id_rubro')->get();
         $rubros = Rubro::orderBy('id_rubro')->get();
-        $promociones = Promocion::all();
-        return view('home', compact('zonas', 'horarios', 'mañana', 'productos', 'rubros','promociones'));
+
+        return view('home', compact('zonas', 'horarios', 'mañana', 'productos', 'rubros'));
         // return view('home');
     }
     public function zonasFecha(Request $request)

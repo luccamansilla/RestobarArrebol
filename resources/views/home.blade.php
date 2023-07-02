@@ -309,8 +309,8 @@
                     <div class="section-heading">
                         <h6>Menú y promociones</h6>
                         <h2>Nuestros platos y bebidas.</h2>
-                        <p class="text-justify text-center">Ofrecemos descuentos para productos seleccionados y
-                            categorias completas.</p>
+                        <h5 class="text-justify text-center">Ofrecemos descuentos para productos seleccionados y
+                            categorias completas.</h5>
                     </div>
                 </div>
             </div>
@@ -348,16 +348,21 @@
                                                                     alt=""> --}}
                                                             <div class="d-inline">
                                                                 <h4>{{ $producto->nombre }}@if ($producto->promocion)
-                                                                    (Descuento del %{{$producto->promocion->descuento}})
-                                                                @endif</h4>
-                                                                
+                                                                        (Descuento del
+                                                                        %{{ $producto->promocion->descuento }})
+                                                                    @endif
+                                                                </h4>
+
                                                             </div>
-                                                            <p class="text-justify">{{$producto->descripcion}}</p>
+                                                            {{-- <p class="text-justify">{{$producto->descripcion}}</p> --}}
+                                                            <p class="text-justify">Lorem ipsum dolor sit, amet
+                                                                consectetur adipisicing elit. Tempora nostrum
+                                                                dignissimos provident molestiae? Nisi repudiandae sint
+                                                                nobis voluptates reiciendis neque vero hic, omnis unde
+                                                                molestiae modi, debitis a cumque id.</p>
+
                                                             <div class="price">
                                                                 @if ($producto->promocion)
-                                                                    <h6 class="mr-2">
-                                                                        <s>${{ number_format($producto->precio, 0, ',', '.') }}</s>
-                                                                    </h6>
                                                                     <h6 class="mr-2">
                                                                         ${{ number_format($producto->precio * (1 - $producto->promocion->descuento / 100), 0, ',', '.') }}
                                                                     </h6>
@@ -367,7 +372,6 @@
                                                                     </h6>
                                                                 @endif
                                                             </div>
-
                                                         </div>
                                                     </div>
                                                 @endif
