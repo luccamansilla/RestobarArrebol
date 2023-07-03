@@ -339,40 +339,69 @@
                             <section class='tabs-content'>
                                 @for ($i = 1; $i < $rubros->count() + 1; $i++)
                                     <article id='tabs-{{ $i }}'>
+                                        <!-- ***** Si el rubro tiene promoción imprimo mensaje y horario ***** -->
+                                        @if (App\Models\Rubro::find($i)->promocion)
+                                            <div class="text-center">
+                                                <h5 class="text-justify text-center">Descuento del
+                                                    %{{ App\Models\Rubro::find($i)->promocion->descuento }} en
+                                                    {{ App\Models\Rubro::find($i)->nombre_rubro }}
+                                                </h5>
+                                                <br>
+                                                <h6>Promoción valida de :
+                                                    {{ App\Models\Rubro::find($i)->promocion->hora_desde }} a
+                                                    {{ App\Models\Rubro::find($i)->promocion->hora_hasta }}</h6>
+                                                <br>
+                                            </div>
+                                        @endif
+                                        <!-- -->
                                         <div class="row">
                                             @foreach ($productos as $producto)
                                                 @if ($producto->id_rubro == $i)
                                                     <div class="col-lg-6">
                                                         <div class="tab-item">
-                                                            {{-- <img src="assets/images/tab-item-01.png"
-                                                                    alt=""> --}}
                                                             <div class="d-inline">
-                                                                <h4>{{ $producto->nombre }}@if ($producto->promocion)
-                                                                        (Descuento del
-                                                                        %{{ $producto->promocion->descuento }})
+                                                                <h4>{{ $producto->nombre }}
+                                                                    <!-- ***** Si el rubro no tiene promoción pero el producto si imprimo descuento producto ***** -->
+                                                                    @if (!$producto->rubro->promocion && $producto->promocion)
+                                                                        (Descuento del %{{ $producto->promocion->descuento }})
                                                                     @endif
                                                                 </h4>
-
                                                             </div>
                                                             {{-- <p class="text-justify">{{$producto->descripcion}}</p> --}}
+                                                            @if (!$producto->rubro->promocion && $producto->promocion)
+                                                                <p>Promoción válida de:
+                                                                    {{ $producto->promocion->hora_desde }} a
+                                                                    {{ $producto->promocion->hora_hasta }} hs</p>
+                                                            @endif
                                                             <p class="text-justify">Lorem ipsum dolor sit, amet
                                                                 consectetur adipisicing elit. Tempora nostrum
                                                                 dignissimos provident molestiae? Nisi repudiandae sint
                                                                 nobis voluptates reiciendis neque vero hic, omnis unde
                                                                 molestiae modi, debitis a cumque id.</p>
 
-                                                            <div class="price">
-                                                                @if ($producto->promocion)
+                                                            @if ($producto->rubro->promocion)
+                                                                <div class="price">
+                                                                    <h6 class="mr-2">
+                                                                        ${{ number_format($producto->precio * (1 - $producto->rubro->promocion->descuento / 100), 0, ',', '.') }}
+                                                                        <s>${{ number_format($producto->precio, 0, ',', '.') }}</s>
+                                                                    </h6>
+                                                                </div>
+                                                            @elseif ($producto->promocion)
+                                                                <div class="price">
                                                                     <h6 class="mr-2">
                                                                         ${{ number_format($producto->precio * (1 - $producto->promocion->descuento / 100), 0, ',', '.') }}
+                                                                        <s>${{ number_format($producto->precio, 0, ',', '.') }}</s>
                                                                     </h6>
-                                                                @else
+                                                                </div>
+                                                            @else
+                                                                <div class="price">
                                                                     <h6 class="mr-2">
                                                                         ${{ number_format($producto->precio, 0, ',', '.') }}
                                                                     </h6>
-                                                                @endif
-                                                            </div>
+                                                                </div>
+                                                            @endif
                                                         </div>
+
                                                     </div>
                                                 @endif
                                             @endforeach
