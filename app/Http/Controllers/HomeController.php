@@ -22,7 +22,7 @@ class HomeController extends Controller
         $horarios = Horarios::all();
         $dia = new DateTime('tomorrow');
         $mañana = $dia->format('Y-m-d');
-        $productos = Productos::orderBy('id_rubro')->get();
+        $productos = Productos::where('borrado',false)->where('estado',true)->orderBy('id_rubro')->get();
         $rubros = Rubro::orderBy('id_rubro')->get();
 
         return view('home', compact('zonas', 'horarios', 'mañana', 'productos', 'rubros'));

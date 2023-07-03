@@ -53,7 +53,7 @@
                           <!-- ***** Menu Start ***** -->
                           <ul class="nav">
                               <li class="scroll-to-section"><a href="{{ route('home.inicio') }}#top"
-                                      class="active">Inicio</a></li>
+                                      >Inicio</a></li>
                               <li class="scroll-to-section"><a href="{{ route('home.inicio') }}#about">Sobre
                                       Nosotros</a></li>
                               <li class="scroll-to-section"><a href="{{ route('home.inicio') }}#menu">Promociones</a>
@@ -113,19 +113,19 @@
                           <table class="min-w-max w-full table-auto bg-gray-200 border-r-4">
                               <thead>
                                   <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                                      <th class="cursor-pointer py-3 px-6 text-center" wire:click="order('id')">Nro. de
+                                      <th class="py-3 px-6 text-center">Nro. de
                                           reserva
                                       </th>
-                                      <th class="cursor-pointer py-3 px-6 text-center" wire:click="order('id_zona')">
+                                      <th class="py-3 px-6 text-center">
                                           Zona
                                       </th>
-                                      <th class="cursor-pointer py-3 px-6 text-center" wire:click="order('id_zona')">
+                                      <th class="py-3 px-6 text-center">
                                           Cantidad
                                           de personas
                                       </th>
-                                      <th class="cursor-pointer py-3 px-6 text-center" wire:click="order('fecha')">Fecha
+                                      <th class="py-3 px-6 text-center">Fecha
                                       </th>
-                                      <th class="cursor-pointer py-3 px-6 text-center" wire:click="order('fecha')">Hora
+                                      <th class="py-3 px-6 text-center">Hora
                                       </th>
                                       <th class="py-3 px-6 text-center">Acciones</th>
                                   </tr>
@@ -153,21 +153,21 @@
                                           </td>
                                           <td class="py-3 px-6 text-center">
                                               <div class=" items-center">
-                                                  <span>{{ $res->fecha }}</span>
+                                                  <span>{{ date("d/m/Y", strtotime($res->fecha))}}</span>
                                               </div>
                                           </td>
                                           <td class="py-3 px-6 text-center">
                                               <div class=" items-center">
-                                                  <span>{{ \App\Models\Horarios::find($res->id_hora)->hora }}</span>
+                                                  <span>{{ date("H:i", strtotime(\App\Models\Horarios::find($res->id_hora)->hora))}}hs</span>
                                                   {{-- quitar segundos --}}
                                               </div>
                                           </td>
                                           <td class="py-3 px-6 text-center">
                                               <div class="flex item-center justify-center">
                                                   @if ($res->fecha > $hoy)
-                                                      <button type="button" onclick="borrar()">Dar
+                                                      <x-button type="button" onclick="borrar()">Dar
                                                           de
-                                                          baja</button>
+                                                          baja</x-button>
                                                   @else
                                                       <p>Reserva ya efectuada</p>
                                                   @endif

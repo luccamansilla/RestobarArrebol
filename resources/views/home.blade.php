@@ -178,7 +178,7 @@
 
     <!-- ***** Offers Area Starts ***** -->
     {{-- Dice id=menu pero en realidad es ofertas si lo cambio se rompe --}}
-    <section class="section" id="menu">
+    {{-- <section class="section" id="menu">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
@@ -297,7 +297,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- ***** Offers Area Ends ***** -->
 
     <!-- ***** Menu Area Starts ***** -->
@@ -369,9 +369,9 @@
                                                             </div>
                                                             {{-- <p class="text-justify">{{$producto->descripcion}}</p> --}}
                                                             @if (!$producto->rubro->promocion && $producto->promocion)
-                                                                <p>Promoción válida de:
-                                                                    {{ $producto->promocion->hora_desde }} a
-                                                                    {{ $producto->promocion->hora_hasta }} hs</p>
+                                                                <p>Promoción válida de 
+                                                                    {{ date("H:i", strtotime($producto->promocion->hora_desde)) }}hs a
+                                                                    {{ date("H:i", strtotime($producto->promocion->hora_hasta)) }}hs hasta {{date("d/m/Y", strtotime($producto->promocion->fecha_vencimiento))}}.</p>
                                                             @endif
                                                             <p class="text-justify">Lorem ipsum dolor sit, amet
                                                                 consectetur adipisicing elit. Tempora nostrum
