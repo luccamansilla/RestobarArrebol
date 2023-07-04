@@ -363,21 +363,22 @@
                                                                 <h4>{{ $producto->nombre }}
                                                                     <!-- ***** Si el rubro no tiene promoción pero el producto si imprimo descuento producto ***** -->
                                                                     @if (!$producto->rubro->promocion && $producto->promocion)
-                                                                        (Descuento del %{{ $producto->promocion->descuento }})
+                                                                        (Descuento del
+                                                                        %{{ $producto->promocion->descuento }})
                                                                     @endif
                                                                 </h4>
                                                             </div>
                                                             {{-- <p class="text-justify">{{$producto->descripcion}}</p> --}}
+                                                            <p class="text-justify">{{ $producto->descripcion }}</p>
                                                             @if (!$producto->rubro->promocion && $producto->promocion)
-                                                                <p>Promoción válida de 
-                                                                    {{ date("H:i", strtotime($producto->promocion->hora_desde)) }}hs a
-                                                                    {{ date("H:i", strtotime($producto->promocion->hora_hasta)) }}hs hasta {{date("d/m/Y", strtotime($producto->promocion->fecha_vencimiento))}}.</p>
+                                                                <p>Promoción válida de
+                                                                    {{ date('H:i', strtotime($producto->promocion->hora_desde)) }}hs
+                                                                    a
+                                                                    {{ date('H:i', strtotime($producto->promocion->hora_hasta)) }}hs
+                                                                    hasta
+                                                                    {{ date('d/m/Y', strtotime($producto->promocion->fecha_vencimiento)) }}.
+                                                                </p>
                                                             @endif
-                                                            <p class="text-justify">Lorem ipsum dolor sit, amet
-                                                                consectetur adipisicing elit. Tempora nostrum
-                                                                dignissimos provident molestiae? Nisi repudiandae sint
-                                                                nobis voluptates reiciendis neque vero hic, omnis unde
-                                                                molestiae modi, debitis a cumque id.</p>
 
                                                             @if ($producto->rubro->promocion)
                                                                 <div class="price">
