@@ -12,9 +12,9 @@ class IndexReservas extends Component
     protected $listeners = ['delete'];
     public function render()
     {
-        $reservas = Reserva::where('id_usuario', Auth::user()->id)->get();
         $dia = new DateTime();
         $hoy = $dia->format('Y-m-d');
+        $reservas = Reserva::where('id_usuario', Auth::user()->id)->where('fecha', '>=', $hoy)->get();
         return view('livewire.index-reservas', compact('reservas', 'hoy'));
     }
 
