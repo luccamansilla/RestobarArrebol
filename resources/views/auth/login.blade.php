@@ -28,13 +28,6 @@
                     autocomplete="current-password" />
             </div>
 
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <x-checkbox id="remember_me" name="remember" />
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Recordarme') }}</span>
-                </label>
-            </div>
-
             <div class="flex items-center  mt-4">
                 <a href="{{ route('home.inicio') }}" class="items-start place-content-start">
                     <button type="button"
@@ -42,14 +35,8 @@
                         Volver
                     </button>
                 </a>
-                {{-- @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 ml-5 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        href="{{ route('password.request') }}">
-                        {{ __('¿Olvido su contraseña?') }}
-                    </a>
-                @endif --}}
                 <x-button class="ml-56">
-                    {{ __('Log in') }}
+                    {{ __('Ingresar') }}
                 </x-button>
             </div>
         </form>

@@ -347,9 +347,14 @@
                                                     {{ App\Models\Rubro::find($i)->nombre_rubro }}
                                                 </h5>
                                                 <br>
-                                                <h6>Promoción valida de :
-                                                    {{ App\Models\Rubro::find($i)->promocion->hora_desde }} a
-                                                    {{ App\Models\Rubro::find($i)->promocion->hora_hasta }}</h6>
+                                                Promocion válida de
+                                                {{ date('H:i', strtotime(App\Models\Rubro::find($i)->promocion->hora_desde)) }}hs
+                                                a
+                                                {{ date('H:i', strtotime(App\Models\Rubro::find($i)->promocion->hora_hasta)) }}hs
+                                                hasta el
+                                                {{ date('d/m/Y', strtotime(App\Models\Rubro::find($i)->promocion->fecha_vencimiento)) }}.
+                                                </h6>
+                                                <br>
                                                 <br>
                                             </div>
                                         @endif
@@ -363,22 +368,21 @@
                                                                 <h4>{{ $producto->nombre }}
                                                                     <!-- ***** Si el rubro no tiene promoción pero el producto si imprimo descuento producto ***** -->
                                                                     @if (!$producto->rubro->promocion && $producto->promocion)
-                                                                        (Descuento del %{{ $producto->promocion->descuento }})
+                                                                        (Descuento del
+                                                                        %{{ $producto->promocion->descuento }})
                                                                     @endif
                                                                 </h4>
                                                             </div>
-                                                            {{-- <p class="text-justify">{{$producto->descripcion}}</p> --}}
                                                             @if (!$producto->rubro->promocion && $producto->promocion)
-                                                                <p>Promoción válida de 
-                                                                    {{ date("H:i", strtotime($producto->promocion->hora_desde)) }}hs a
-                                                                    {{ date("H:i", strtotime($producto->promocion->hora_hasta)) }}hs hasta {{date("d/m/Y", strtotime($producto->promocion->fecha_vencimiento))}}.</p>
+                                                                <p>Promoción válida de
+                                                                    {{ date('H:i', strtotime($producto->promocion->hora_desde)) }}hs
+                                                                    a
+                                                                    {{ date('H:i', strtotime($producto->promocion->hora_hasta)) }}hs
+                                                                    hasta
+                                                                    {{ date('d/m/Y', strtotime($producto->promocion->fecha_vencimiento)) }}.
+                                                                </p>
                                                             @endif
-                                                            <p class="text-justify">Lorem ipsum dolor sit, amet
-                                                                consectetur adipisicing elit. Tempora nostrum
-                                                                dignissimos provident molestiae? Nisi repudiandae sint
-                                                                nobis voluptates reiciendis neque vero hic, omnis unde
-                                                                molestiae modi, debitis a cumque id.</p>
-
+                                                            <p class="text-justify">{{$producto->descripcion}}</p>
                                                             @if ($producto->rubro->promocion)
                                                                 <div class="price">
                                                                     <h6 class="mr-2">
