@@ -12,6 +12,7 @@ class Productos extends Model
     public $timestamps = false;
     public function promocion()
     {
+        //Nuevo cambio chavalin aceptame
         return $this->belongsTo(Promocion::class, 'id_promocion');
     }
     public function rubro()
